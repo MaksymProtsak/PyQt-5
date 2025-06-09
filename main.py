@@ -7,26 +7,33 @@ from PyQt5.QtWidgets import (
 )
 
 
-def add_label():
-    print("add")
+class Window(QMainWindow):
+    def __init__(self):
+        super(Window, self).__init__()
+
+        self.setWindowTitle("First app")
+        self.setGeometry(300, 250, 350, 200)
+
+        main_text = QtWidgets.QLabel(self)
+        main_text.setText("This is base text")
+        main_text.move(100, 100)
+        main_text.adjustSize()
+
+        btn = QtWidgets.QPushButton(self)
+        btn.move(70, 150)
+        btn.setText("Press on me")
+        btn.setFixedWidth(200)
+        btn.clicked.connect(self.add_label)
+
+
+    @staticmethod
+    def add_label():
+        print("add")
 
 
 def application():
     app = QApplication(sys.argv)
-    window = QMainWindow()
-    window.setWindowTitle("First app")
-    window.setGeometry(300, 250, 350, 200)
-
-    main_text = QtWidgets.QLabel(window)
-    main_text.setText("This is base text")
-    main_text.move(100, 100)
-    main_text.adjustSize()
-
-    btn = QtWidgets.QPushButton(window)
-    btn.move(70, 150)
-    btn.setText("Press on me")
-    btn.setFixedWidth(200)
-    btn.clicked.connect(add_label)
+    window = Window()
 
     window.show()
     sys.exit(app.exec_())
