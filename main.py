@@ -14,21 +14,24 @@ class Window(QMainWindow):
         self.setWindowTitle("First app")
         self.setGeometry(300, 250, 350, 200)
 
-        main_text = QtWidgets.QLabel(self)
-        main_text.setText("This is base text")
-        main_text.move(100, 100)
-        main_text.adjustSize()
+        self.new_text = QtWidgets.QLabel(self)
 
-        btn = QtWidgets.QPushButton(self)
-        btn.move(70, 150)
-        btn.setText("Press on me")
-        btn.setFixedWidth(200)
-        btn.clicked.connect(self.add_label)
+        self.main_text = QtWidgets.QLabel(self)
+        self.main_text.setText("This is base text")
+        self.main_text.move(100, 100)
+        self.main_text.adjustSize()
+
+        self.btn = QtWidgets.QPushButton(self)
+        self.btn.move(70, 150)
+        self.btn.setText("Press on me")
+        self.btn.setFixedWidth(200)
+        self.btn.clicked.connect(self.add_label)
 
 
-    @staticmethod
-    def add_label():
-        print("add")
+    def add_label(self):
+        self.new_text.setText("Second text")
+        self.new_text.move(100, 50)
+        self.new_text.adjustSize()
 
 
 def application():
